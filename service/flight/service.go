@@ -34,15 +34,17 @@ func GetService() *Service {
 //
 // Example:
 // Given the input:
-//   flights = [
-//     Flight{source: "LAX", destination: "DXB"},
-//     Flight{source: "JFK", destination: "LAX"},
-//     Flight{source: "SFO", destination: "SJC"},
-//     Flight{source: "DXB", destination: "SFO"}
-//   ]
+//
+//	flights = [
+//	  Flight{source: "LAX", destination: "DXB"},
+//	  Flight{source: "JFK", destination: "LAX"},
+//	  Flight{source: "SFO", destination: "SJC"},
+//	  Flight{source: "DXB", destination: "SFO"}
+//	]
 //
 // The function returns:
-//   (["JFK", "LAX", "DXB", "SFO", "SJC"], true)
+//
+//	(["JFK", "LAX", "DXB", "SFO", "SJC"], true)
 func (s Service) FindFlightPath(flights []Flight) ([]string, bool) {
 	if !validFlights(flights) {
 		return nil, false
@@ -77,6 +79,10 @@ func (s Service) FindFlightPath(flights []Flight) ([]string, bool) {
 }
 
 func validFlights(flights []Flight) bool {
+	if len(flights) == 0 {
+		return false
+	}
+
 	for _, f := range flights {
 		if !f.valid() {
 			return false

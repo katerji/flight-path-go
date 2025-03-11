@@ -15,7 +15,7 @@ func TestService_FlightPath(t *testing.T) {
 		want1   bool
 	}{
 		{
-			name: "valid test case",
+			name: "valid test",
 			flights: []Flight{
 				{"DXB", "AUH"},
 				{"AUH", "JFK"},
@@ -25,6 +25,31 @@ func TestService_FlightPath(t *testing.T) {
 				"BEY", "DXB", "AUH", "JFK",
 			},
 			want1: true,
+		},
+		{
+			name:    "no flights",
+			flights: []Flight{},
+			want:    nil,
+			want1:   false,
+		},
+		{
+			name: "single flight",
+			flights: []Flight{
+				{"DXB", "AUH"},
+			},
+			want: []string{
+				"DXB", "AUH",
+			},
+			want1: true,
+		},
+		{
+			name: "malformed flights",
+			flights: []Flight{
+				{"DXB", "AUH"},
+				{"DXB", "BEY", "LAO"},
+			},
+			want:  nil,
+			want1: false,
 		},
 	}
 	for _, tt := range tests {
