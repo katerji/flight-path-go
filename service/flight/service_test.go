@@ -30,7 +30,7 @@ func TestService_FlightPath(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := Service{}
-			got, got1 := s.FlightPath(tt.flights)
+			got, got1 := s.FindFlightPath(tt.flights)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("FlightPath() got = %v, want %v", got, tt.want)
 			}
